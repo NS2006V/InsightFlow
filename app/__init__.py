@@ -36,4 +36,7 @@ def create_app(config_name="development"):
     from app.routes.main_routes import main_bp
     app.register_blueprint(main_bp)
 
+    from app.routes.upload_routes import upload_bp
+    app.register_blueprint(upload_bp)
+
     return app

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="upload-card">
+        <h1>Upload Dataset</h1>
+        <p class="hint">Accepted formats: .csv, .xlsx</p>
+        <p class="hint">Required columns: {{ required_columns | join(", ") }}</p>
+
+        <form method="POST" enctype="multipart/form-data" class="upload-form">
+            <input type="file" name="dataset_file" accept=".csv,.xlsx" required>
+            <button type="submit">Upload &amp; Validate</button>
+        </form>
+
+        {% if result %}
+            {% if result.success %}
+                <div class="alert alert-success">
+                    <p><strong>Dataset looks valid.</strong></p>
+                    <p>Rows: {{ result.summary.row_count }}</p>
+                    <p>Columns: {{ result.summary.columns | join(", ") }}</p>
+                </div>
+            {% else %}
+                <div class="alert alert-error">
+                    <p><strong>Validation failed:</strong></p>
+                    <ul>
+                        {% for error in result.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% if result.summary %}
+                        <p>Rows read: {{ result.summary.row_count }}</p>
+                    {% endif %}
+                </div>
+            {% endif %}
+        {% endif %}
+    </div>
+{% endblock %}
