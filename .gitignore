@@ -1,0 +1,29 @@
+# Environment / secrets
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+*.egg-info/
+
+# Virtual environment
+venv/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Uploaded/working data (never commit real business data by accident)
+/data/uploads/
+*.csv
+*.xlsx
+# ...but do allow intentionally-committed sample/demo datasets:
+!/data/sample/*.csv
+!/data/sample/*.xlsx
